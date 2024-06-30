@@ -14,17 +14,17 @@ import lombok.Setter;
 public class RegistrationRequest {
     
     @NotEmpty(message = "Firstname is required")
-    @NotBlank(message = "Firstname can't be blank")
+    @NotBlank(message = "Firstname is required")
     private String firstname;
     @NotEmpty(message = "Lastname is required")
-    @NotBlank(message = "Lastname can't be blank")
+    @NotBlank(message = "Lastname is required")
     private String lastname;
     @Email(message = "Email is not formatted correctly")
     @NotEmpty(message = "Email is required")
-    @NotBlank(message = "Email can't be blank")
+    @NotBlank(message = "Email is required")
     private String email;
     @NotEmpty(message = "Password is required")
-    @NotBlank(message = "Password can't be blank")
+    @NotBlank(message = "Password is required")
     @Size(min = 8, message = "Password must be at least 6 characters long minimum")
     private String password;
     
