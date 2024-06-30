@@ -1,5 +1,7 @@
 package com.andres.book.user;
 
+import com.andres.book.book.Book;
+import com.andres.book.history.BookTransactionHistory;
 import com.andres.book.role.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -45,8 +47,15 @@ public class User implements UserDetails, Principal {
     private String password;
     private boolean accountLocked;
     private boolean enabled;
+    
     @ManyToMany(fetch = EAGER)
     private List<Role> roles;
+    
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
+
+    @OneToMany(mappedBy = "user")
+    private List<BookTransactionHistory> histories;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
