@@ -25,7 +25,7 @@ public class Book extends BaseEntity {
     private String authorName;
     private String isbn;
     private String synopsis;
-    private String bookCover;
+    private String bookCover; // File path where the book cover is stored
     private boolean archived;
     private boolean shareable;
 

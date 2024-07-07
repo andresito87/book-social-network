@@ -2,6 +2,7 @@ package com.andres.book.book;
 
 import com.andres.book.common.PageResponse;
 import com.andres.book.exception.OperationNotPermittedException;
+import com.andres.book.file.FileStorageService;
 import com.andres.book.history.BookTransactionHistory;
 import com.andres.book.history.BookTransactionHistoryRepository;
 import com.andres.book.user.User;
@@ -11,13 +12,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -29,6 +26,7 @@ public class BookService {
     private final BookRepository bookRepository;
     private final BookTransactionHistoryRepository transactionHistoryRepository;
     private final BookMapper bookMapper;
+    private final FileStorageService fileStorageService;
 
     public Integer save(BookRequest request, Authentication connectedUser) {
         User user = (User) connectedUser.getPrincipal();
@@ -143,7 +141,6 @@ public class BookService {
     }
 
     public Integer borrowBook(Integer bookId, Authentication connectedUser) {
-
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new EntityNotFoundException("Book with ID " + bookId + " not found"));
         if (book.isArchived() || !book.isShareable()) {
@@ -168,7 +165,6 @@ public class BookService {
     }
 
     public Integer returnBorrowedBook(Integer bookId, Authentication connectedUser) {
-
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new EntityNotFoundException("Book with ID " + bookId + " not found"));
         if (book.isArchived() || !book.isShareable()) {
@@ -182,12 +178,11 @@ public class BookService {
                 .orElseThrow(() -> new OperationNotPermittedException("You have not borrowed this book"));
 
         bookTransactionHistory.setReturnApproved(true);
-        
+
         return transactionHistoryRepository.save(bookTransactionHistory).getId();
     }
-    
-    public Integer approveReturnBorrowedBook(Integer bookId, Authentication connectedUser) {
 
+    public Integer approveReturnBorrowedBook(Integer bookId, Authentication connectedUser) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new EntityNotFoundException("Book with ID " + bookId + " not found"));
         if (book.isArchived() || !book.isShareable()) {
@@ -197,11 +192,20 @@ public class BookService {
         if (book.getOwner().getId().equals(user.getId())) {
             throw new OperationNotPermittedException("You cannot borrow or return your own book");
         }
-        
+
         BookTransactionHistory bookTransactionHistory = transactionHistoryRepository.findByBookIdAndOwnerId(bookId, user.getId())
                 .orElseThrow(() -> new OperationNotPermittedException("The book is not returned yet. Cannot approve its return"));
         bookTransactionHistory.setReturned(true);
-        
+
         return transactionHistoryRepository.save(bookTransactionHistory).getId();
+    }
+
+    public void uploadBookCoverPicture(Integer bookId, MultipartFile file, Authentication connectedUser) {
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new EntityNotFoundException("Book with ID " + bookId + " not found"));
+        User user = (User) connectedUser.getPrincipal();
+        String bookCover = fileStorageService.saveFile(file, user.getId());
+        book.setBookCover(bookCover);
+        bookRepository.save(book);
     }
 }
