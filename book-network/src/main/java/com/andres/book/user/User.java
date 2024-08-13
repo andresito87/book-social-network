@@ -3,7 +3,14 @@ package com.andres.book.user;
 import com.andres.book.book.Book;
 import com.andres.book.history.BookTransactionHistory;
 import com.andres.book.role.Role;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,7 +39,7 @@ import static jakarta.persistence.FetchType.EAGER;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(name = "_user")
 @EntityListeners(AuditingEntityListener.class)
 public class User implements UserDetails, Principal {
 
@@ -47,13 +54,10 @@ public class User implements UserDetails, Principal {
     private String password;
     private boolean accountLocked;
     private boolean enabled;
-    
     @ManyToMany(fetch = EAGER)
     private List<Role> roles;
-    
     @OneToMany(mappedBy = "owner")
     private List<Book> books;
-
     @OneToMany(mappedBy = "user")
     private List<BookTransactionHistory> histories;
 
