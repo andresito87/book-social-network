@@ -49,6 +49,10 @@ Book Social Network is a full-stack application that enables users to manage the
 - OpenAPI Generator for Angular
 - Bootstrap
 
+## Docs API in Swagger UI
+
+- [Swagger UI](http://localhost:8088/api/v1/swagger-ui/index.html)
+
 ## Learning Objectives
 
 By following this project, students will learn:
