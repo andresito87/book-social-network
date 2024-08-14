@@ -3,6 +3,7 @@ import {BookService} from '../../../../services/services/book.service';
 import {PageResponseBookResponse} from '../../../../services/models/page-response-book-response';
 import {BookResponse} from '../../../../services/models/book-response';
 import {Router} from '@angular/router';
+import {of} from "rxjs";
 
 @Component({
   selector: 'app-book-list',
@@ -37,11 +38,13 @@ export class BookListComponent implements OnInit {
       .subscribe({
         next: (books) => {
           this.bookResponse = books;
+          console.log("Content"+this.bookResponse.content);
           this.pages = Array(this.bookResponse.totalPages)
             .fill(0)
             .map((x, i) => i);
         }
       });
+
   }
 
   gotToPage(page: number) {
@@ -94,4 +97,5 @@ export class BookListComponent implements OnInit {
   displayBookDetails(book: BookResponse) {
     this.router.navigate(['books', 'details', book.id]);
   }
+
 }

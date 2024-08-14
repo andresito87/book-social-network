@@ -10,6 +10,10 @@ export class TokenService {
   }
 
   get token(): string {
-    return localStorage.getItem('token') as string;
+    try {
+      return localStorage.getItem('token') as string;
+    } catch (e) {
+      return '';
+    }
   }
 }

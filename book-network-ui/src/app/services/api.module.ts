@@ -7,7 +7,6 @@ import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 import { FeedbackService } from './services/feedback.service';
 import { BookService } from './services/book.service';
 import { AuthenticationService } from './services/authentication.service';
-import {HttpTokenInterceptor} from "./interceptor/http-token.interceptor";
 
 /**
  * Module that provides all services and configuration.
@@ -24,11 +23,6 @@ import {HttpTokenInterceptor} from "./interceptor/http-token.interceptor";
     AuthenticationService,
     ApiConfiguration,
     HttpClient,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useFactory: HttpTokenInterceptor,
-      multi: true
-    }
   ],
 })
 export class ApiModule {
