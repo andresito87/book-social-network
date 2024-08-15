@@ -157,6 +157,7 @@ public class BookService {
         BookTransactionHistory bookTransactionHistory = BookTransactionHistory.builder()
                 .user(user)
                 .book(book)
+                .createdBy(user.getId())
                 .returned(false)
                 .returnApproved(false)
                 .build();

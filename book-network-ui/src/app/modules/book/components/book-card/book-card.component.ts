@@ -73,4 +73,11 @@ export class BookCardComponent {
   onShowDetails() {
     this.details.emit(this._book);
   }
+
+  roundRatingToFilledStars(rating: number): number {
+    if (rating % 1 === 0) {
+      return rating;
+    }
+    return Math.floor(rating) + 0.5;
+  }
 }

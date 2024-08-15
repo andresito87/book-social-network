@@ -21,7 +21,7 @@
       <app-rating [rating]="book.rate || 0"></app-rating>
       <span class="fw-bold">
         @if (book.rate || 0 > 0) {
-          {{book.rate}}
+          {{book.rate ? roundRatingToFilledStars(book.rate): ''}}
         }
       </span>
     </div>
