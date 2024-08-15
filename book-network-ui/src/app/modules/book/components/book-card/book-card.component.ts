@@ -1,12 +1,14 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {BookResponse} from '../../../../services/models/book-response';
 import {NgOptimizedImage} from "@angular/common";
+import {RatingComponent} from "../rating/rating.component";
 
 @Component({
   selector: 'app-book-card',
   standalone: true,
   imports: [
-    NgOptimizedImage
+    NgOptimizedImage,
+    RatingComponent
   ],
   templateUrl: './book-card.component.html',
   styleUrl: './book-card.component.scss'
