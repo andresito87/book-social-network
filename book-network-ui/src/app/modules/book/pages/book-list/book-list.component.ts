@@ -3,12 +3,14 @@ import {BookService} from '../../../../services/services/book.service';
 import {PageResponseBookResponse} from '../../../../services/models/page-response-book-response';
 import {BookResponse} from '../../../../services/models/book-response';
 import {Router} from '@angular/router';
-import {of} from "rxjs";
+import {BookCardComponent} from "../../components/book-card/book-card.component";
 
 @Component({
   selector: 'app-book-list',
   standalone: true,
-  imports: [],
+  imports: [
+    BookCardComponent
+  ],
   templateUrl: './book-list.component.html',
   styleUrl: './book-list.component.scss'
 })
@@ -38,7 +40,6 @@ export class BookListComponent implements OnInit {
       .subscribe({
         next: (books) => {
           this.bookResponse = books;
-          console.log("Content"+this.bookResponse.content);
           this.pages = Array(this.bookResponse.totalPages)
             .fill(0)
             .map((x, i) => i);
