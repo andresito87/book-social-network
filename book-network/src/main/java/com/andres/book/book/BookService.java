@@ -32,6 +32,7 @@ public class BookService {
         User user = (User) connectedUser.getPrincipal();
         Book book = bookMapper.toBook(request);
         book.setOwner(user);
+        book.setCreatedBy(user.getId());
 
         return bookRepository.save(book).getId();
     }
@@ -201,7 +202,7 @@ public class BookService {
         return transactionHistoryRepository.save(bookTransactionHistory).getId();
     }
 
-    public void uploadBookCoverPicture(Integer bookId, MultipartFile file, Authentication connectedUser) {
+    public void uploadBookCoverPicture(MultipartFile file, Authentication connectedUser, Integer bookId) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new EntityNotFoundException("Book with ID " + bookId + " not found"));
         User user = (User) connectedUser.getPrincipal();

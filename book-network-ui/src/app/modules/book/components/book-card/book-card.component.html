@@ -4,8 +4,8 @@
   [class.border-success]="book.shareable"
   [class.border-warning]="book.archived"
 >
-  <img width="5184" height="3456"
-       ngSrc="assets/book.jpg" priority
+  <img height="200"
+       [src]="bookCover"
        class="card-img-top" alt="...">
   <div class="card-body overflow-scroll">
     <h5 class="card-title fs-6 text-nowrap fw-bold mb-1"><i class="fa-solid fa-book"></i>&nbsp;{{ book.title }}</h5>
