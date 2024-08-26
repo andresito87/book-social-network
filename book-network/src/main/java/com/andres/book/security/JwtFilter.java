@@ -1,4 +1,4 @@
-package com.andres.book.secutiry;
+package com.andres.book.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

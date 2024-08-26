@@ -1,14 +1,10 @@
 import { Injectable } from '@angular/core';
-import {jwtDecode} from 'jwt-decode';
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
-
-  set token(token: string) {
-    localStorage.setItem('token', token);
-  }
 
   get token(): string {
     try {
@@ -18,23 +14,38 @@ export class TokenService {
     }
   }
 
-  get isTokenValid(): boolean {
+  set token(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  get userRoles(): string[] {
     const token = this.token;
+    if (token) {
+      const jwtHelper = new JwtHelperService();
+      const decodedToken = jwtHelper.decodeToken(token);
+      console.log(decodedToken.authorities);
+      return decodedToken.authorities;
+    }
+    return [];
+  }
 
-    try {
-      // Si usas la librería jwt-decode
-      const decodedToken = jwtDecode(token);
+  isTokenNotValid() {
+    return !this.isTokenValid();
+  }
 
-      // Comprueba si el token tiene un campo 'exp' (fecha de expiración)
-      if (decodedToken.exp) {
-        const currentTime = Math.floor(Date.now() / 1000);
-        return decodedToken.exp > currentTime;
-      }
-
-      return false;
-    } catch (error) {
-      console.error('Token no válido o malformado', error);
+  isTokenValid() {
+    const token = this.token;
+    if (!token) {
       return false;
     }
+    // decode the token
+    const jwtHelper = new JwtHelperService();
+    // check expiry date
+    const isTokenExpired = jwtHelper.isTokenExpired(token);
+    if (isTokenExpired) {
+      localStorage.clear();
+      return false;
+    }
+    return true;
   }
 }

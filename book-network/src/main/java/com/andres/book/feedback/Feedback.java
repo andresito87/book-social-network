@@ -26,5 +26,4 @@ public class Feedback extends BaseEntity {
     @JoinColumn(name = "book_id")
     private Book book;
     
-    
 }

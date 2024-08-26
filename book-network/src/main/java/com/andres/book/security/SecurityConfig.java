@@ -1,4 +1,4 @@
-package com.andres.book.secutiry;
+package com.andres.book.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

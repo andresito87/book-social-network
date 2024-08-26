@@ -1,4 +1,4 @@
-package com.andres.book.secutiry;
+package com.andres.book.security;
 
 import com.andres.book.user.UserRepository;
 import lombok.RequiredArgsConstructor;
