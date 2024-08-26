@@ -71,6 +71,17 @@ Book Social Network is a full-stack application that enables users to manage the
 
 - [Swagger UI](http://localhost:8088/api/v1/swagger-ui/index.html)
 
+## Dockerize the application
+
+- Run the following command to build the Docker image for the backend:
+
+```bash
+cd book-network
+docker build -t bsn/bsn:1.0.0 -f ../docker/backend/Dockerfile .
+cd ..
+docker compose up -d
+```
+
 ## Learning Objectives
 
 By following this project, students will learn:
