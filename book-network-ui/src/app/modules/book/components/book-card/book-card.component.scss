@@ -1,6 +1,6 @@
 div {
   &.card {
-    max-height: 450px;
+    max-height: 550px;
     min-height: 450px;
     max-width: 300px;
   }
@@ -12,6 +12,7 @@ i {
   cursor: pointer;
 }
 img{
-  width: auto;
-  height: auto;
+  width: 290px;
+  height: 300px;
+  margin: 0 auto;
 }
