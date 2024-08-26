@@ -1,0 +1,496 @@
+{
+	"info": {
+		"_postman_id": "63e1a951-5a77-4d52-ad2b-610e8c29a1b0",
+		"name": "Book-Social_Network",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19407551"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\":\"Andres\",\r\n    \"lastname\": \"Podadera\",\r\n    \"email\": \"2andrespodadera87@gmail.com\",\r\n    \"password\":\"password11\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_url}}:{{api_port}}/api/v1/auth/register",
+					"host": [
+						"{{api_url}}"
+					],
+					"port": "{{api_port}}",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mail Token Activation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1080/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1080",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Activation Account",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}:{{api_port}}/api/v1/auth/activate-account?token=003239",
+					"host": [
+						"{{api_url}}"
+					],
+					"port": "{{api_port}}",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"activate-account"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "003239"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"andrespodadera87@gmail.com\",\r\n    \"password\": \"password11\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_url}}:{{api_port}}/api/v1/auth/authenticate",
+					"host": [
+						"{{api_url}}"
+					],
+					"port": "{{api_port}}",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OpenApi",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJmdWxsTmFtZSI6IkFuZHJlcyBQb2RhZGVyYSIsInN1YiI6ImFuZHJlc3BvZGFkZXJhODdAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlsiVVNFUiJdLCJpYXQiOjE3MjM0OTUzNjMsImV4cCI6MTcyMzU4MTc2M30.5bfdi8i6Gkeg0cU0fXZGRKp2mpf7HAwToawOsywwjqCLwuj5WKTtwL4ZZKkwFaEw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{api_url}}:{{api_port}}/api/v1",
+					"host": [
+						"{{api_url}}"
+					],
+					"port": "{{api_port}}",
+					"path": [
+						"api",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Books",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJmdWxsTmFtZSI6IkFuZHJlcyBQb2RhZGVyYSIsInN1YiI6ImFuZHJlc3BvZGFkZXJhODdAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlsiVVNFUiJdLCJpYXQiOjE3MjQxNzExMDYsImV4cCI6MTcyNDI1NzUwNn0.kc3nyiVZBLOwAsCotucOZeofbHAQVDY09Qyeuazvbejwwv6CBo1-tcCihbkl-jyb",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}:{{api_port}}/api/v1/books?page=0&size=5",
+					"host": [
+						"{{api_url}}"
+					],
+					"port": "{{api_port}}",
+					"path": [
+						"api",
+						"v1",
+						"books"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Returned Books",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJmdWxsTmFtZSI6IkFuZHJlcyBQb2RhZGVyYSIsInN1YiI6ImFuZHJlc3BvZGFkZXJhODdAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlsiVVNFUiJdLCJpYXQiOjE3MjQzNDAxMzEsImV4cCI6MTcyNDQyNjUzMX0.IUnTxUhC5kzsowlvzrBpsn-WIYCydueyydn3Zfg89GU1cHkroGF8dUlqjrB0uf74",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}:{{api_port}}/api/v1/books/returned?page=0&size=5",
+					"host": [
+						"{{api_url}}"
+					],
+					"port": "{{api_port}}",
+					"path": [
+						"api",
+						"v1",
+						"books",
+						"returned"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrowed Books",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJmdWxsTmFtZSI6IkFuZHJlcyBQb2RhZGVyYSIsInN1YiI6ImFuZHJlc3BvZGFkZXJhODdAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlsiVVNFUiJdLCJpYXQiOjE3MjQzNDAxMzEsImV4cCI6MTcyNDQyNjUzMX0.IUnTxUhC5kzsowlvzrBpsn-WIYCydueyydn3Zfg89GU1cHkroGF8dUlqjrB0uf74",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}:{{api_port}}/api/v1/books/borrowed?page=0&size=5",
+					"host": [
+						"{{api_url}}"
+					],
+					"port": "{{api_port}}",
+					"path": [
+						"api",
+						"v1",
+						"books",
+						"borrowed"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "To return a book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJmdWxsTmFtZSI6IkFuZHJlcyBQb2RhZGVyYSIsInN1YiI6ImFuZHJlc3BvZGFkZXJhODdAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlsiVVNFUiJdLCJpYXQiOjE3MjQzNDAxMzEsImV4cCI6MTcyNDQyNjUzMX0.IUnTxUhC5kzsowlvzrBpsn-WIYCydueyydn3Zfg89GU1cHkroGF8dUlqjrB0uf74",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}:{{api_port}}/api/v1/books/borrow/return/8",
+					"host": [
+						"{{api_url}}"
+					],
+					"port": "{{api_port}}",
+					"path": [
+						"api",
+						"v1",
+						"books",
+						"borrow",
+						"return",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "To approve to return a book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJmdWxsTmFtZSI6IkFuZHJlcyBQb2RhZGVyYSIsInN1YiI6ImFuZHJlc3BvZGFkZXJhODdAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlsiVVNFUiJdLCJpYXQiOjE3MjQzNDM0MDcsImV4cCI6MTcyNDQyOTgwN30.yDDcGf7AllO4bbAvEQk7iPPcNYtcCJFx7TLB3J4Zkm5FhZjH4VVybIuvJtpgH5jO",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}:{{api_port}}/api/v1/books/borrow/return/approve/8",
+					"host": [
+						"{{api_url}}"
+					],
+					"port": "{{api_port}}",
+					"path": [
+						"api",
+						"v1",
+						"books",
+						"borrow",
+						"return",
+						"approve",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "borrow book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJmdWxsTmFtZSI6IkFuZHJlcyBQb2RhZGVyYSIsInN1YiI6ImFuZHJlc3BvZGFkZXJhODdAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlsiVVNFUiJdLCJpYXQiOjE3MjM3MTE3MzcsImV4cCI6MTcyMzc5ODEzN30.Hu2Ft9tOZyUy_C8vaQur9hm-P6wGJBhjUVZIbItzBR8jVGl46uLAiN3yIh4u9qba",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}:{{api_port}}/api/v1/books/borrow/5",
+					"host": [
+						"{{api_url}}"
+					],
+					"port": "{{api_port}}",
+					"path": [
+						"api",
+						"v1",
+						"books",
+						"borrow",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJmdWxsTmFtZSI6IkFuZHJlcyBQb2RhZGVyYSIsInN1YiI6ImFuZHJlc3BvZGFkZXJhODdAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlsiVVNFUiJdLCJpYXQiOjE3MjQxNzExMDYsImV4cCI6MTcyNDI1NzUwNn0.kc3nyiVZBLOwAsCotucOZeofbHAQVDY09Qyeuazvbejwwv6CBo1-tcCihbkl-jyb",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"Prueba\",\r\n    \"authorName\":\"Prueba\",\r\n    \"isbn\":\"2222\",\r\n    \"synopsis\":\"Prueba\",\r\n    \"shareable\":false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8088/api/v1/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"api",
+						"v1",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add cover picture",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJmdWxsTmFtZSI6IkFuZHJlcyBQb2RhZGVyYSIsInN1YiI6ImFuZHJlc3BvZGFkZXJhODdAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlsiVVNFUiJdLCJpYXQiOjE3MjQxNzkyMTIsImV4cCI6MTcyNDI2NTYxMn0.Y8B6FRlD1Pe_g95cJ0bXiQc_w0WuYGw4KMlIhXk5aSm-zktWSoEv3QHrYSTj1Djj",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "file",
+						"value": "multipart/form-data",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/andres/OneDrive/Imágenes/Capturas de pantalla/Captura de pantalla 2024-06-17 215953.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{api_url}}:{{api_port}}/api/v1/books/cover/502",
+					"host": [
+						"{{api_url}}"
+					],
+					"port": "{{api_port}}",
+					"path": [
+						"api",
+						"v1",
+						"books",
+						"cover",
+						"502"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_url",
+			"value": "http://localhost",
+			"type": "string"
+		},
+		{
+			"key": "api_port",
+			"value": "8088",
+			"type": "string"
+		}
+	]
+}
