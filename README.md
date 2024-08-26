@@ -14,8 +14,26 @@ Book Social Network is a full-stack application that enables users to manage the
 - Book Returning: Users can return borrowed books.
 - Book Return Approval: Functionality to approve book returns.
 
+#### Images of the application
+
+- Home page
+![Home page](screenshots/appImages/welcome.png)
+- Books page
+![Books page](screenshots/appImages/home.png)
+- My books page
+![My books page](screenshots/appImages/mybooks.png)
+- Create book page
+![Create book page](screenshots/appImages/createbook.png)
+- Give feedback book page
+![Give feedback book page](screenshots/appImages/givefeedback.png)
+- Book return page
+![Book return page](screenshots/appImages/bookreturned.png)
+
 #### Class diagram
 ![Class diagram](screenshots/class-diagram.png)
+
+#### DB schema
+![DB schema](screenshots/appImages/db.png)
 
 #### Spring security diagram
 ![Security diagram](screenshots/security.png)
