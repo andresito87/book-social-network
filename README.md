@@ -73,11 +73,25 @@ Book Social Network is a full-stack application that enables users to manage the
 
 ## Dockerize the application
 
-- Run the following command to build the Docker image for the backend:
+Note for full functionality, you need to modify application-dev.yml with username and password for the mail configuration.
+username: your mail address
+password: your apppassword in https://myaccount.google.com/apppasswords
+
+- Run the following command to build the Docker image for the backend and start the application:
 
 ```bash
 cd book-network
-docker build -t bsn/bsn:1.0.0 -f ../docker/backend/Dockerfile .
+docker build -t bsn/bsn-api:1.0.0 -f ../docker/backend/Dockerfile . 
+# docker build --build-arg="APP_VERSION=1.0.3" -t bsn/bsn-api:1.0.3 -f ../docker/backend/Dockerfile . (Alternative to include app version)
+cd ..
+docker compose up -d
+```
+
+- Run the following command to build the Docker image for the frontend and start the application:
+
+```bash
+cd book-network-ui
+docker build -t bsn/bsn-ui:1.0.0 -f ../docker/frontend/Dockerfile .
 cd ..
 docker compose up -d
 ```

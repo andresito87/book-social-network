@@ -10,7 +10,7 @@ RUN mvn clean package -DskipTests # Skip tests
 FROM amazoncorretto:17
 # arguments to be applied to the image when running the container
 ARG PROFILE=dev
-ARG APP_VERSION=1.0.0
+ARG APP_VERSION=1.0.2
 # define the working directory
 WORKDIR /app
 # copy the packaged jar file into our container
